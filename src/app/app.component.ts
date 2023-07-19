@@ -5,7 +5,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ListComponent } from './list/list.component';
 import { AuthModalComponent } from './user/auth-modal/auth-modal.component';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
 import { AuthService } from './services/auth.service';
 @Component({
   standalone: true,
@@ -17,7 +17,7 @@ import { AuthService } from './services/auth.service';
     ListComponent,
     AuthModalComponent,
     AsyncPipe,
-    NgIf,
+    NgIf, DatePipe
   ],
   selector: 'secretpass-root',
   templateUrl: './app.component.html',

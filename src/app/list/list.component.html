@@ -1,58 +1,42 @@
 <section class="container mx-auto my-16">
-  <h1 class="text-5xl mt-0 mb-5">PasswordSecret</h1>
+  <h1 class="text-5xl mt-0 mb-5 text-center">PasswordSecret</h1>
   <p class="mb-5">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur aut in,
     ipsam, enim vel laudantium labore itaque perspiciatis, ullam eligendi error.
     Cupiditate sint minus incidunt pariatur esse quas repellat dignissimos!
   </p>
-  <button
-    class="bg-gray-900 hover:bg-gray-700 text-yellow-400 font-bold py-2 px-4 border border-yellow-900 rounded"
-  >
-    Add Keeper
-  </button>
-
   <div class="px-20 py-10 mb-10 my-5 border-4 border-gray-500">
     <h2 class="text-3xl text-center">Add New Keeper</h2>
     <p class="text-center">You can add a new password keeper</p>
-    <form>
+    <form [formGroup]="serviceForm" (ngSubmit)="createNewData()" (reset)="cleanForm">
       <div class="flex flex-col">
         <label class="text-lg font-medium mb-2 underline">Service Name</label>
-        <input
-          type="text"
-          name="serviceName"
-          class="border-2 border-gray-900 p-2 rounded-lg w-full"
-        />
+        <secretpass-input-service [control]="serviceName" type="text" placeholder="Enter Name Service">
+        </secretpass-input-service>
       </div>
-
       <div class="flex flex-col">
         <label class="text-lg font-medium mb-2 underline">Address</label>
-        <input
-          type="text"
-          name="serviceUrl"
-          class="border-2 border-gray-900 p-2 rounded-lg w-full"
-        />
+        <secretpass-input-service [control]="serviceAddress" type="text" placeholder="Enter Address">
+        </secretpass-input-service>
       </div>
 
       <div class="flex flex-col">
         <label class="text-lg font-medium mb-2 underline">Logo Url</label>
-        <input
-          type="text"
-          name="serviceImg"
-          class="border-2 border-gray-900 p-2 rounded-lg w-full"
-        />
+        <secretpass-input-service [control]="serviceImg" type="text" placeholder="Enter Logo Url">
+        </secretpass-input-service>
       </div>
 
-      <button
-        class="mt-5 mx-0.5 bg-gray-900 hover:bg-gray-700 text-yellow-400 font-bold py-2 px-4 border border-yellow-900 rounded"
-      >
-        Add service
+      <button type="submit"
+        class="mt-5 mx-0.5 bg-gray-900 hover:bg-gray-700 text-yellow-400 font-bold py-2 px-4 border border-yellow-900 rounded">
+        Add Keeper
       </button>
 
-      <button
-        class="mt-5 mx-0.5 bg-gray-900 hover:bg-gray-700 text-yellow-400 font-bold py-2 px-4 border border-yellow-900 rounded"
-      >
+      <button type="reset"
+        class="mt-5 mx-0.5 bg-gray-900 hover:bg-gray-700 text-yellow-400 font-bold py-2 px-4 border border-yellow-900 rounded">
         Cancel
       </button>
     </form>
   </div>
+
+  <secretpass-grid-list [clientSites]="clients"></secretpass-grid-list>
 </section>

@@ -3,7 +3,7 @@
     <div
       class="inline-flex self-center text-xl font-sans text-yellow-400 relative"
     >
-      <span class="relative top-1 right-2 cursor-pointer" (click)="toVault()"
+      <span class="relative top-1 right-2 cursor-pointer" (click)="toMain()"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -23,9 +23,9 @@
               d="M8.97,8.516c-1.133,1.134-1.757,2.641-1.757,4.243s0.624,3.109,1.757,4.242c1.133,1.134,2.64,1.758,4.243,1.758   s3.109-0.624,4.243-1.758c1.133-1.133,1.757-2.64,1.757-4.242s-0.624-3.109-1.757-4.243C15.116,6.176,11.309,6.176,8.97,8.516z    M16.041,15.587c-1.512,1.512-4.146,1.512-5.657,0c-0.755-0.756-1.171-1.76-1.171-2.828s0.416-2.073,1.171-2.829   c0.78-0.779,1.804-1.169,2.829-1.169s2.049,0.39,2.829,1.169c0.755,0.756,1.171,1.761,1.171,2.829S16.797,14.831,16.041,15.587z"
             />
           </g></svg></span
-      ><span class="cursor-pointer" (click)="toVault()">PasswordSecret</span>
+      ><span class="cursor-pointer" (click)="toMain()">PasswordSecret</span>
     </div>
-    <div *ngIf="(auth.isAuth$ | async) === true; else isOuth">
+    <div class="flex gap-2" *ngIf="(auth.isAuth$ | async) === true; else isOuth">
       <button
         class="bg-yellow-400 hover:bg-yellow-700 text-black font-bold py-2 px-4 border border-yellow-700 rounded"
         (click)="toVault()"
@@ -44,7 +44,7 @@
         class="bg-yellow-400 hover:bg-yellow-700 text-black font-bold py-2 px-4 border border-yellow-700 rounded"
         (click)="openModal($event)"
       >
-        Login
+        Login/Join 
       </button>
     </ng-template>
   </nav>

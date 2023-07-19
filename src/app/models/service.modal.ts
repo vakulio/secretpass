@@ -1,10 +1,9 @@
 import firebase from 'firebase/compat/app';
 
-export default interface IClip {
+export default interface IServiceItem {
   uid: string;
-  displayName: string;
-  title: string;
-  fileName: string;
+  serviceName: string;
+  address: string;
   imageUrl: string;
   timestamp: firebase.firestore.FieldValue;
   docID?: string;

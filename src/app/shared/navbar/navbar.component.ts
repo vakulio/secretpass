@@ -24,4 +24,8 @@ export class NavbarComponent {
   toVault() {
     this.router.navigateByUrl('/secrets');
   }
+
+  toMain() {
+    this.router.navigateByUrl('/');
+  }
 }
