@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ListComponent } from './list/list.component';
+import { AuthModalComponent } from './user/auth-modal/auth-modal.component';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { AuthService } from './services/auth.service';
 @Component({
   standalone: true,
   imports: [
@@ -11,12 +14,16 @@ import { ListComponent } from './list/list.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     NavbarComponent,
-    ListComponent
+    ListComponent,
+    AuthModalComponent,
+    AsyncPipe, 
+    NgIf
   ],
   selector: 'secretpass-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  auth = inject(AuthService)
   title = 'SecPass';
 }

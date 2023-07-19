@@ -1,0 +1,28 @@
+<secretpass-alert *ngIf="showAlert" [color]="alertColor">{{ alertMsg }}</secretpass-alert>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <!-- Name -->
+  <div class="mb-3">
+    <label class="inline-block mb-2 text-yellow-400">Name</label>
+    <secretpass-input [control]="name" type="text" placeholder="Enter Name"></secretpass-input>
+  </div>
+  <!-- Email -->
+  <div class="mb-3">
+    <label class="inline-block mb-2 text-yellow-400">Email</label>
+    <secretpass-input [control]="email" type="email" placeholder="Enter Email"></secretpass-input>
+  </div>
+  <!-- Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2 text-yellow-400">Password</label>
+    <secretpass-input [control]="password" type="password" placeholder="Enter Password"></secretpass-input>
+  </div>
+  <!-- Confirm Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2 text-yellow-400">Confirm Password</label>
+    <secretpass-input [control]="confirm_password" type="password" placeholder="Confirm Password"></secretpass-input>
+  </div>
+  <button type="submit" class="block w-full bg-yellow-400 py-1.5 px-3 rounded transition text-black
+  hover:bg-yellow-500 disabled:opacity-50 disabled:bg-yellow-400"
+    [disabled]="registerForm.invalid || inSubmission">
+    Submit
+  </button>
+</form>

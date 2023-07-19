@@ -1,0 +1,23 @@
+<secretpass-alert *ngIf="showAlert" [color]="alertColor">{{ alertMsg }}</secretpass-alert>
+<form #loginForm="ngForm" (ngSubmit)="login()">
+  <!-- Email -->
+  <div class="mb-3">
+    <label class="inline-block mb-2 text-yellow-400">Email</label>
+    <input #email="ngModel"
+    type="email" name="email" pattern="" [(ngModel)]="credentials.email" class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+          duration-500 focus:outline-none rounded bg-transparent
+          focus:border-indigo-400" placeholder="Enter Email" required pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" />
+          <p *ngIf="email.errors && email.touched && email.dirty" class="text-red-400">Email is invalid</p>
+  </div>
+  <!-- Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2 text-yellow-400">Password</label>
+    <input #password="ngModel" type="password" name="password" [(ngModel)]="credentials.password" class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+        duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400" placeholder="Password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"/>
+    <p *ngIf="password.errors && password.touched && password.dirty" class="text-red-400">Password is invalid. Password must be at least 8 characters long, have 1 uppercase letter, 1 lowercase letter, and 1 number</p>
+  </div>
+  <button type="submit" [disabled]="loginForm.invalid || inSubmission" class="block w-full bg-yellow-400 py-1.5 px-3 rounded transition text-black
+        hover:bg-yellow-500 disabled:opacity-50 disabled:bg-yellow-400">
+    Submit
+  </button>
+</form>
