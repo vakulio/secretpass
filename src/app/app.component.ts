@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ListComponent } from './list/list.component';
 @Component({
   standalone: true,
   imports: [
@@ -10,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     NavbarComponent,
+    ListComponent
   ],
   selector: 'secretpass-root',
   templateUrl: './app.component.html',
