@@ -5,7 +5,12 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { NavbarComponent } from './navbar/navbar.component';
 @Component({
   standalone: true,
-  imports: [RouterModule, AngularFireAuthModule, AngularFirestoreModule, NavbarComponent],
+  imports: [
+    RouterModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    NavbarComponent,
+  ],
   selector: 'secretpass-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

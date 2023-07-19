@@ -1,3 +1,5 @@
+/* eslint-env es6 */
+/* eslint-disable no-console */
 const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
 
