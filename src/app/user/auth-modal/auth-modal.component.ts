@@ -11,17 +11,22 @@ import { LoginComponent } from '../login/login.component';
   templateUrl: './auth-modal.component.html',
   styles: [],
   standalone: true,
-  imports: [ModalComponent, TabsContainerComponent, TabComponent, LoginComponent, RegisterComponent]
+  imports: [
+    ModalComponent,
+    TabsContainerComponent,
+    TabComponent,
+    LoginComponent,
+    RegisterComponent,
+  ],
 })
 export class AuthModalComponent implements OnInit, OnDestroy {
-  modal = inject(ModalService)
-
+  modal = inject(ModalService);
 
   ngOnInit(): void {
-    this.modal.register('auth')
+    this.modal.register('auth');
   }
 
   ngOnDestroy(): void {
-    this.modal.unregister('auth')
+    this.modal.unregister('auth');
   }
 }

@@ -7,14 +7,14 @@ export class RegisterValidators {
       const mathingControl = group.get(matchingControlName);
 
       if (!control || !mathingControl) {
-        console.error('Form controls can be found in the form group')
+        console.error('Form controls can be found in the form group');
         return { controlNotFound: false };
       }
 
       const error =
         control.value === mathingControl.value ? null : { noMatch: true };
 
-      mathingControl.setErrors(error)
+      mathingControl.setErrors(error);
 
       return error;
     };

@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import IUser from 'src/app/models/user.model';
 import { RegisterValidators } from '../validators/register-validators';
@@ -13,7 +18,7 @@ import { NgIf } from '@angular/common';
   templateUrl: './register.component.html',
   styles: [],
   imports: [InputComponent, AlertComponent, ReactiveFormsModule, NgIf],
-  standalone: true
+  standalone: true,
 })
 export class RegisterComponent {
   constructor(private auth: AuthService, private emailTaken: EmailTaken) {}

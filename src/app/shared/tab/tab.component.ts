@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
   standalone: true,
 })
 export class TabComponent {
-  @Input() tabTitle = ""
-  @Input() active = false
+  @Input() tabTitle = '';
+  @Input() active = false;
 }

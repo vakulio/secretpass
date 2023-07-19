@@ -1,3 +1,5 @@
 <secretpass-navbar></secretpass-navbar>
 <router-outlet></router-outlet>
-<secretpass-auth-modal *ngIf="(auth.isAuthWithDelay$ | async) === false"></secretpass-auth-modal>
+<secretpass-auth-modal
+  *ngIf="(auth.isAuthWithDelay$ | async) === false"
+></secretpass-auth-modal>

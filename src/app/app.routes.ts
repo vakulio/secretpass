@@ -10,10 +10,10 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'secrets',
-    component: ListComponent
+    component: ListComponent,
   },
   {
     path: '**',
-    component: NotFoundComponent
+    component: NotFoundComponent,
   },
 ];

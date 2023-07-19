@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
   styles: [],
 })
 export class NavbarComponent {
-  modal = inject(ModalService)
-  auth = inject(AuthService)
-  router = inject(Router)
+  modal = inject(ModalService);
+  auth = inject(AuthService);
+  router = inject(Router);
 
   openModal($event: Event) {
     $event.preventDefault();
