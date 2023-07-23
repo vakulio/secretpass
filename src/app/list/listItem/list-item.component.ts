@@ -20,7 +20,7 @@ import { PasswordManagerService } from 'src/app/services/password-manager.servic
 export class ListItemComponent {
   @Input() site: IServiceItem = {} as IServiceItem;
   private manager = inject(PasswordManagerService);
-  isEncrypt = false;
+  isEncrypt = true;
 
   changeState() {
     this.isEncrypt = !this.isEncrypt;

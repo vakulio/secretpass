@@ -1,18 +1,14 @@
-<img [src]="site.imageUrl" [alt]="site.serviceName" class="h-32 w-32" />
-<h3 class="text-xl font-bold">{{ site.serviceName }}</h3>
-<div
-  class="word-wrap bg-gray-300 text-black rounded-lg text-sm p-2 cursor-pointer hover:text-yellow-700"
-  title="Please click me"
-  (click)="changeState()"
->
-  {{ decrtyptPassword(site.password) }}
-</div>
+<div class="p-1"><img [src]="site.imageUrl" [alt]="site.serviceName" class="h-32 w-32" />
+  <h3 class="text-xl font-bold">{{ site.serviceName }}</h3>
+  <div class="word-wrap bg-gray-300 text-black rounded-lg text-sm p-2 cursor-pointer hover:text-yellow-700 w-32 overflow-hidden"
+    title="Please click me" (click)="changeState()">
+    {{ decrtyptPassword(site.password) }}
+  </div>
 
-<div class="w-full flex justify-end">
-  <button
-    (click)="deleteClient(site)"
-    class="mt-5 mx-0.5 bg-gray-900 hover:bg-gray-700 text-yellow-400 font-bold py-2 px-4 border border-yellow-900 rounded"
-  >
-    Delete
-  </button>
+  <div class="w-full flex justify-end">
+    <button (click)="deleteClient(site)"
+      class="mt-5 mx-0.5 bg-gray-900 hover:bg-gray-700 text-yellow-400 font-bold py-2 px-4 border border-yellow-900 rounded">
+      Delete
+    </button>
+  </div>
 </div>
