@@ -17,7 +17,8 @@ import { AuthService } from './services/auth.service';
     ListComponent,
     AuthModalComponent,
     AsyncPipe,
-    NgIf, DatePipe
+    NgIf,
+    DatePipe,
   ],
   selector: 'secretpass-root',
   templateUrl: './app.component.html',

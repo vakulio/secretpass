@@ -25,7 +25,10 @@
           </g></svg></span
       ><span class="cursor-pointer" (click)="toMain()">PasswordSecret</span>
     </div>
-    <div class="flex gap-2" *ngIf="(auth.isAuth$ | async) === true; else isOuth">
+    <div
+      class="flex gap-2"
+      *ngIf="(auth.isAuth$ | async) === true; else isOuth"
+    >
       <button
         class="bg-yellow-400 hover:bg-yellow-700 text-black font-bold py-2 px-4 border border-yellow-700 rounded"
         (click)="toVault()"
@@ -44,7 +47,7 @@
         class="bg-yellow-400 hover:bg-yellow-700 text-black font-bold py-2 px-4 border border-yellow-700 rounded"
         (click)="openModal($event)"
       >
-        Login/Join 
+        Login/Join
       </button>
     </ng-template>
   </nav>

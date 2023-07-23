@@ -1,21 +1,32 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
+import { InputComponent } from 'src/app/shared/input/input.component';
 
 @Component({
   selector: 'secretpass-login',
   templateUrl: './login.component.html',
   styles: [],
   standalone: true,
-  imports: [NgIf, AlertComponent, FormsModule],
+  imports: [NgIf, AlertComponent, ReactiveFormsModule, InputComponent],
 })
 export class LoginComponent {
-  credentials = {
-    email: '',
-    password: '',
-  };
+  email = new FormControl(
+    '',
+    [Validators.required, Validators.email]
+  );
+  password = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm),
+  ]);
+  enterForm = new FormGroup(
+    {
+      email: this.email,
+      password: this.password,
+    }
+  );
 
   showAlert = false;
   alertMsg = 'Please wait!';
@@ -31,10 +42,12 @@ export class LoginComponent {
     this.inSubmission = true;
 
     try {
-      await this.auth.signInWithEmailAndPassword(
-        this.credentials.email,
-        this.credentials.password
-      );
+      if(this.enterForm.controls.email.value && this.enterForm.controls.password.value) {
+        await this.auth.signInWithEmailAndPassword(
+          this.enterForm.controls.email.value,
+          this.enterForm.controls.password.value
+        );
+      }
     } catch (error) {
       this.inSubmission = false;
       this.alertColor = 'red';

@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   FormControl,
   FormGroup,
@@ -12,13 +12,18 @@ import firebase from 'firebase/compat/app';
 import { take } from 'rxjs/operators';
 import { PasswordManagerService } from '../services/password-manager.service';
 import IServiceItem from '../models/service.modal';
-import { GridListComponent } from './grid-list/grid-list/grid-list.component';
-import { FbTimestampPipe } from '../shared/pipes/fb-Timestamp/fb-timestamp.pipe';
+import { AES } from 'crypto-js';
+import { ListItemComponent } from './listItem/list-item.component';
 
 @Component({
   selector: 'secretpass-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, InputServiseComponent, GridListComponent, DatePipe, FbTimestampPipe],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    InputServiseComponent,
+    ListItemComponent,
+  ],
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
 })
@@ -27,6 +32,7 @@ export class ListComponent implements OnInit {
   private manager = inject(PasswordManagerService);
   clients: IServiceItem[] = [];
   user: firebase.User | null = null;
+  isEncrypt = false;
   constructor() {
     {
       this.auth.user.pipe(take(1)).subscribe((user) => {
@@ -36,14 +42,17 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.manager.getUserClients().pipe(take(1)).subscribe((docs) => {
-      const powerData = docs.map((doc) => {
-        return {
-          ...doc.data(),
-        };
+    this.manager
+      .getUserClients()
+      .pipe()
+      .subscribe((docs) => {
+        const arr = docs.map(action => {
+          const data = action.payload.doc.data() as IServiceItem;
+          const docID = action.payload.doc.id
+          return {...data, docID}
+        })
+       this.clients = arr
       });
-      this.clients = powerData;
-    });
   }
 
   serviceName = new FormControl('', [
@@ -51,38 +60,44 @@ export class ListComponent implements OnInit {
     Validators.minLength(3),
   ]);
 
-  serviceAddress = new FormControl('', [Validators.minLength(3)]);
+  servicePassword = new FormControl('', [Validators.minLength(3)]);
 
   serviceImg = new FormControl('', [Validators.minLength(3)]);
 
   serviceForm = new FormGroup({
     serviceName: this.serviceName,
     serviceImg: this.serviceImg,
-    serviceAddress: this.serviceAddress,
+    servicePassword: this.servicePassword,
   });
 
   cleanForm() {
     this.serviceForm.reset();
   }
 
+  encryptPassword(password: string) {
+    const secretKey = '44H7YaZxYmuX0VxxvT5njenuzFC5shLU';
+    const codedPassword = AES.encrypt(password, secretKey).toString();
+    return codedPassword;
+  }
+
   createNewData() {
     if (!this.user?.uid) {
       return;
     }
-    const { serviceImg, serviceName, serviceAddress } = this.serviceForm.value;
+    const { serviceImg, serviceName, servicePassword } = this.serviceForm.value;
 
-    if (serviceImg && serviceName && serviceAddress) {
+    if (serviceImg && serviceName && servicePassword) {
       const client: IServiceItem = {
         serviceName,
         imageUrl: serviceImg,
         uid: this.user?.uid,
-        address: serviceAddress,
+        password: this.encryptPassword(servicePassword),
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       };
       this.manager
         .createClient(client)
         .then(() => {
-          this.clients = [...this.clients, client]
+          this.clients = [...this.clients, client];
           console.log('Success');
         })
         .catch((err) => console.log(err));

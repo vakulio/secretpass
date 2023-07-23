@@ -8,21 +8,21 @@
   <div class="px-20 py-10 mb-10 my-5 border-4 border-gray-500">
     <h2 class="text-3xl text-center">Add New Keeper</h2>
     <p class="text-center">You can add a new password keeper</p>
-    <form [formGroup]="serviceForm" (ngSubmit)="createNewData()" (reset)="cleanForm">
+    <form [formGroup]="serviceForm" (ngSubmit)="createNewData()" (reset)="(cleanForm)">
       <div class="flex flex-col">
         <label class="text-lg font-medium mb-2 underline">Service Name</label>
-        <secretpass-input-service [control]="serviceName" type="text" placeholder="Enter Name Service">
+        <secretpass-input-service [control]="serviceName" labelFor='servName' type="text" placeholder="Enter Name Service">
         </secretpass-input-service>
       </div>
       <div class="flex flex-col">
-        <label class="text-lg font-medium mb-2 underline">Address</label>
-        <secretpass-input-service [control]="serviceAddress" type="text" placeholder="Enter Address">
+        <label class="text-lg font-medium mb-2 underline">Password</label>
+        <secretpass-input-service [control]="servicePassword" labelFor="password" type="password" placeholder="Enter Password">
         </secretpass-input-service>
       </div>
 
       <div class="flex flex-col">
         <label class="text-lg font-medium mb-2 underline">Logo Url</label>
-        <secretpass-input-service [control]="serviceImg" type="text" placeholder="Enter Logo Url">
+        <secretpass-input-service [control]="serviceImg" labelFor='logoImg' type="text" placeholder="Enter Logo Url">
         </secretpass-input-service>
       </div>
 
@@ -37,6 +37,11 @@
       </button>
     </form>
   </div>
-
-  <secretpass-grid-list [clientSites]="clients"></secretpass-grid-list>
+  <section class="grid grid-cols-3 gap-5">
+    <div *ngFor="let site of clients" class="shadow-lg border-2 border-gray-900 flex flex-col items-center">
+      <secretpass-list-item [site]="site">
+        
+      </secretpass-list-item>
+    </div>
+  </section>
 </section>

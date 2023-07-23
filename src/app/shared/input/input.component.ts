@@ -1,5 +1,5 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Renderer2, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 
@@ -15,4 +15,15 @@ export class InputComponent {
   @Input() placeholder = '';
   @Input() type = 'text';
   @Input() format = '';
+  @Input() labelFor = '';
+
+  private renderer = inject(Renderer2);
+  passwordVisibility = false;
+  toggleInputType(): void {
+		this.passwordVisibility = !this.passwordVisibility;
+		this.type = this.passwordVisibility ? 'text' : 'password';
+		window.requestAnimationFrame(() => {
+			this.renderer.selectRootElement(`#${this.labelFor}`).focus();
+		});
+	}
 }
