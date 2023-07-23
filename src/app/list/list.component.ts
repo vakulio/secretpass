@@ -77,17 +77,6 @@ export class ListComponent implements OnInit {
     this.serviceForm.reset();
   }
 
-  private getRandomInt(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  private getRandomCharacter() {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const randomIndex = this.getRandomInt(0, chars.length - 1);
-    return chars.charAt(randomIndex);
-  }
-
   generatePassword() {
     let password = '';
     for (let i = 0; i < 8; i++) {
@@ -131,5 +120,16 @@ export class ListComponent implements OnInit {
         .catch((err) => console.log(err));
       this.cleanForm();
     }
+  }
+
+  private getRandomInt(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  private getRandomCharacter() {
+    const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const randomIndex = this.getRandomInt(0, chars.length - 1);
+    return chars.charAt(randomIndex);
   }
 }

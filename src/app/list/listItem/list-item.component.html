@@ -1,12 +1,16 @@
+<div *ngIf="showSnackbar" class="fixed bg-gray-500 text-yellow-200 bottom-32 px-6 py-2 rounded-lg opacity-75 left-1/2 -translate-y-1/2 -translate-x-1/2">
+  <h2>Password {{site.serviceName}} Copied</h2>
+ </div>
+
 <div class="p-1">
   <img [src]="site.imageUrl" [alt]="site.serviceName" class="h-32 w-32" />
   <h3 class="text-xl font-bold">{{ site.serviceName }}</h3>
   <div
     class="word-wrap bg-gray-300 text-black rounded-lg text-sm p-2 cursor-pointer hover:text-yellow-700 w-32 overflow-hidden"
     title="Please click me"
-    (click)="changeState()"
+    (click)="decrtyptPassword()"
   >
-    {{ decrtyptPassword(site.password) }}
+    {{ this.password }}
   </div>
 
   <div class="w-full flex justify-end">
