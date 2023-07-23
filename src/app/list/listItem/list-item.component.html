@@ -1,6 +1,9 @@
-<div *ngIf="showSnackbar" class="fixed bg-gray-500 text-yellow-200 bottom-32 px-6 py-2 rounded-lg opacity-75 left-1/2 -translate-y-1/2 -translate-x-1/2">
-  <h2>Password {{site.serviceName}} Copied</h2>
- </div>
+<div
+  *ngIf="showSnackbar"
+  class="fixed bg-gray-500 text-yellow-200 bottom-32 px-6 py-2 rounded-lg opacity-75 left-1/2 -translate-y-1/2 -translate-x-1/2"
+>
+  <h2>Password {{ site.serviceName }} Copied</h2>
+</div>
 
 <div class="p-1">
   <img [src]="site.imageUrl" [alt]="site.serviceName" class="h-32 w-32" />

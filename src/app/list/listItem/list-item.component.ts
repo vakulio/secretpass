@@ -21,21 +21,21 @@ import { ClipboardModule, ClipboardService } from 'ngx-clipboard';
 export class ListItemComponent implements OnInit {
   @Input() site: IServiceItem = {} as IServiceItem;
   private manager = inject(PasswordManagerService);
-  private clipboardService = inject(ClipboardService)
+  private clipboardService = inject(ClipboardService);
   isEncrypt = true;
   showSnackbar = false;
   snackbarDuration = 2000;
-  password = ''
+  password = '';
 
   ngOnInit(): void {
-    this.password = this.site.password
+    this.password = this.site.password;
   }
 
   viewSnackBar() {
     this.showSnackbar = true;
     setTimeout(() => {
       this.showSnackbar = false;
-    }, this.snackbarDuration)
+    }, this.snackbarDuration);
   }
 
   decrtyptPassword() {
@@ -44,8 +44,10 @@ export class ListItemComponent implements OnInit {
       return;
     }
     const secretKey = '44H7YaZxYmuX0VxxvT5njenuzFC5shLU';
-    const decodedPassword = AES.decrypt(this.site.password, secretKey).toString(enc.Utf8);
-    this.viewSnackBar()
+    const decodedPassword = AES.decrypt(this.site.password, secretKey).toString(
+      enc.Utf8
+    );
+    this.viewSnackBar();
     this.clipboardService.copy(decodedPassword);
     this.password = decodedPassword;
   }
