@@ -81,7 +81,6 @@ ng serve
 - `ts-node`: TypeScript execution environment.
 - `typescript`: TypeScript compiler.
 
-
 ## Author
 
 [Vakulio](https://github.com/vakulio)

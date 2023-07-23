@@ -32,7 +32,7 @@ export class AuthService {
     this.router.events
       .pipe(
         filter((e) => e instanceof NavigationEnd),
-        map((e) => this.route.firstChild),
+        map(() => this.route.firstChild),
         switchMap((route) => route?.data ?? of({ authOnly: true }))
       )
       .subscribe((data) => {

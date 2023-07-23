@@ -10,8 +10,7 @@
     "format:write": "prettier --write .",
     "lint:check": "eslint .",
     "lint:fix": "eslint --fix .",
-    "styles:fix": "prettier --write . && eslint --fix .",
-    "prepare": "husky install"
+    "styles:fix": "prettier --write . && eslint --fix ."
   },
   "private": true,
   "dependencies": {
