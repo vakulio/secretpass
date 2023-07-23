@@ -46,12 +46,12 @@ export class ListComponent implements OnInit {
       .getUserClients()
       .pipe()
       .subscribe((docs) => {
-        const arr = docs.map(action => {
+        const arr = docs.map((action) => {
           const data = action.payload.doc.data() as IServiceItem;
-          const docID = action.payload.doc.id
-          return {...data, docID}
-        })
-       this.clients = arr
+          const docID = action.payload.doc.id;
+          return { ...data, docID };
+        });
+        this.clients = arr;
       });
   }
 

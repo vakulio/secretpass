@@ -1,7 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
 import { InputComponent } from 'src/app/shared/input/input.component';
 
@@ -13,20 +18,15 @@ import { InputComponent } from 'src/app/shared/input/input.component';
   imports: [NgIf, AlertComponent, ReactiveFormsModule, InputComponent],
 })
 export class LoginComponent {
-  email = new FormControl(
-    '',
-    [Validators.required, Validators.email]
-  );
+  email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [
     Validators.required,
     Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm),
   ]);
-  enterForm = new FormGroup(
-    {
-      email: this.email,
-      password: this.password,
-    }
-  );
+  enterForm = new FormGroup({
+    email: this.email,
+    password: this.password,
+  });
 
   showAlert = false;
   alertMsg = 'Please wait!';
@@ -42,7 +42,10 @@ export class LoginComponent {
     this.inSubmission = true;
 
     try {
-      if(this.enterForm.controls.email.value && this.enterForm.controls.password.value) {
+      if (
+        this.enterForm.controls.email.value &&
+        this.enterForm.controls.password.value
+      ) {
         await this.auth.signInWithEmailAndPassword(
           this.enterForm.controls.email.value,
           this.enterForm.controls.password.value

@@ -9,19 +9,25 @@ import { PasswordManagerService } from 'src/app/services/password-manager.servic
   standalone: true,
   imports: [CommonModule],
   templateUrl: './list-item.component.html',
-  styles: [`.word-wrap {word-wrap: break-all;}`],
+  styles: [
+    `
+      .word-wrap {
+        word-wrap: break-all;
+      }
+    `,
+  ],
 })
 export class ListItemComponent {
-  @Input() site:IServiceItem = {} as IServiceItem;
+  @Input() site: IServiceItem = {} as IServiceItem;
   private manager = inject(PasswordManagerService);
-  isEncrypt = false
+  isEncrypt = false;
 
   changeState() {
     this.isEncrypt = !this.isEncrypt;
   }
 
   decrtyptPassword(password: string) {
-    if(this.isEncrypt) return password;
+    if (this.isEncrypt) return password;
     const secretKey = '44H7YaZxYmuX0VxxvT5njenuzFC5shLU';
     const decodedPassword = AES.decrypt(password, secretKey).toString(enc.Utf8);
     return decodedPassword;

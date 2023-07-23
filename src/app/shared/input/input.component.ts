@@ -20,10 +20,10 @@ export class InputComponent {
   private renderer = inject(Renderer2);
   passwordVisibility = false;
   toggleInputType(): void {
-		this.passwordVisibility = !this.passwordVisibility;
-		this.type = this.passwordVisibility ? 'text' : 'password';
-		window.requestAnimationFrame(() => {
-			this.renderer.selectRootElement(`#${this.labelFor}`).focus();
-		});
-	}
+    this.passwordVisibility = !this.passwordVisibility;
+    this.type = this.passwordVisibility ? 'text' : 'password';
+    window.requestAnimationFrame(() => {
+      this.renderer.selectRootElement(`#${this.labelFor}`).focus();
+    });
+  }
 }

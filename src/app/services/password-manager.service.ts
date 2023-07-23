@@ -30,8 +30,10 @@ export class PasswordManagerService {
         if (!user) {
           return of([]);
         }
-        
-       return this.db.collection('clients', (ref) => ref.where('uid', '==', user.uid)).snapshotChanges()
+
+        return this.db
+          .collection('clients', (ref) => ref.where('uid', '==', user.uid))
+          .snapshotChanges();
       })
     );
   }
