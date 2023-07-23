@@ -60,7 +60,10 @@ export class ListComponent implements OnInit {
     Validators.minLength(3),
   ]);
 
-  servicePassword = new FormControl('', [Validators.minLength(3), Validators.required,]);
+  servicePassword = new FormControl('', [
+    Validators.minLength(3),
+    Validators.required,
+  ]);
 
   serviceImg = new FormControl('', [Validators.minLength(3)]);
 
@@ -86,12 +89,12 @@ export class ListComponent implements OnInit {
   }
 
   generatePassword() {
-    let password = "";
+    let password = '';
     for (let i = 0; i < 8; i++) {
-        password += this.getRandomCharacter();
+      password += this.getRandomCharacter();
     }
     this.servicePassword.setValue(password);
-}
+  }
 
   encryptPassword(password: string) {
     const secretKey = '44H7YaZxYmuX0VxxvT5njenuzFC5shLU';
@@ -106,7 +109,10 @@ export class ListComponent implements OnInit {
     const { serviceImg, serviceName, servicePassword } = this.serviceForm.value;
     let image = serviceImg;
     if (serviceImg === '' || serviceImg === null || serviceImg === undefined) {
-      image = `https://source.unsplash.com/random?sig=${this.getRandomInt(0,1000)}`
+      image = `https://source.unsplash.com/random?sig=${this.getRandomInt(
+        0,
+        1000
+      )}`;
     }
     if (image && serviceName && servicePassword) {
       const client: IServiceItem = {
